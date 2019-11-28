@@ -1,2 +1,51 @@
-<h1 class="semibold text-2xl">Welcome to Kickoff!</h1>
-<p class="lead">Use this starting point as a way to quickly set up a new project by generating files, installing gems, and more.</p>
+<div class="py-10 lg:py-20 px-4 border-b border-gray-400 mb-4 text-indigo-800">
+  <div class="container m-auto text-center">
+    <% if admin? %>
+      <h1 class="text-xl lg:text-3xl font-bold">Welcome back, Admin!</h1>
+      <% else %>
+      <h1 class="text-xl lg:text-3xl font-bold">Welcome to D-Beng!</h1>
+    <% end %>
+    <p class="lead my-2 max-w-md m-auto leading-normal text-gray-800 text-lg mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quaerat maiores, repellat minus fugit, non modi id.</p>
+
+    <% unless user_signed_in? %>
+    <%= link_to "Login", new_user_session_path, class:"btn btn-primary my-3" %>
+    <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-primary my-3" %>
+    <% else %>
+      <% if admin? %>
+        <%= link_to "Dashboard", meetings_path, class:"btn btn-primary my-3" %>
+        <%= link_to "Users List", users_path, class:"btn btn-primary my-3" %>
+        <%= link_to "Upcoming Booking", active_sessions_path, class:"btn btn-primary my-3" %>
+      <% else %>
+        <%= link_to "Make a booking", new_meeting_path, class:"btn btn-primary my-3" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="max-w-lg m-auto min-w-1/2">
+  <div class="py-10 lg:py-16 px-4 flex flex-wrap items-center justify-between">
+
+    <div class="lg:w-1/2 w-full mb-4 lg:mb-0">
+      <h3 class="mb-1 font-bold">Keep your vehicle in top shape!</h3>
+      <p class="leading-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur commodi similique nihil tempore, possimus, sequi unde illum, officia impedit maxime aut obcaecati. Eligendi officia ipsam et optio, tempore.</p></br>
+      <%= link_to "Read more!", root_path , class:"link" %>
+    </div>
+
+    <div class="lg:w-1/2 w-full text-center">
+      <%= image_tag 'city_driver.svg', alt: "city driver", width: 400 %>
+    </div>
+  </div>
+
+  <div class="py-10 lg:py-16 px-4 flex flex-wrap items-center justify-between">
+    <div class="lg:w-1/2 w-full mb-4 lg:mb-0">
+      <%= image_tag 'fast_car.svg', alt: "fast car", width: 320 %>
+    </div>
+
+    <div class="lg:w-1/2 w-full">
+      <h3 class="mb-1 font-bold">Vehicle maintenance never been so easy!</h3>
+      <p class="leading-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur commodi similique nihil tempore, possimus, sequi unde illum, officia impedit maxime aut obcaecati. Eligendi officia ipsam et optio, tempore.</p></br>
+      <%= link_to "Read more!", root_path , class:"link" %>
+    </div>
+  </div>
+</div>

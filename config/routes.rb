@@ -1,12 +1,11 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-    authenticate :user, lambda { |u| u.admin? } do
-      mount Sidekiq::Web => '/sidekiq'
-    end
-
-
+  resources :meetings do
+    resources :comments
+  end
   devise_for :users
+  get 'active-sessions', to: "meetings#active_sessions"
   root to: 'home#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users, only: [:index]
 end

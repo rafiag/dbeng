@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module Dbeng
   class Application < Rails::Application
     config.active_job.queue_adapter = :sidekiq
+    config.application_name = 'D-Beng'
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 

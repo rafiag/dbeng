@@ -27,7 +27,10 @@
 
 <hr class="border mt-6" />
 
-<%= render "devise/shared/links" %>
+<div class="text-l">
+  Doesn't have an account yet? <%= link_to "Register here!", new_user_registration_path %>
+</div>
+<%#= render "devise/shared/links" %>
 <% end %>
 
 <%= render "devise/shared/form_wrap" %>

@@ -3,7 +3,7 @@
   <h2 class="heading text-4xl font-bold pt-4 mb-8">Sign up</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+      <%= devise_error_messages! %>
 
     <div class="mb-6">
       <%= f.label :username, class:"label" %>
@@ -43,7 +43,10 @@
 
   <% end %>
 
-  <%= render "devise/shared/links" %>
+  <div class="text-l">
+    Already have an account? <%= link_to "Sign in here!", new_user_session_path %>
+  </div>
+  <%#= render "devise/shared/links", class: "text-m" %>
 
 <% end %>
 

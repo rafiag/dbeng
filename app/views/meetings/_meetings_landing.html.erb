@@ -1,0 +1,58 @@
+<nav class="bg-white mb-4 shadow rounded">
+  <ul id="nav-tab" class="tabs list-reset flex">
+
+    <li class="active" data-tab="calendar">
+      <%= link_to "#calendar", class: "tab flex items-center" do %>
+       <svg viewBox="0 0 20 20" width="16" height="16" class="fill-current text-gray-400 mr-2"><title>calendar</title><path d="M1 4c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4zm2 2v12h14V6H3zm2-6h2v2H5V0zm8 0h2v2h-2V0zM5 9h2v2H5V9zm0 4h2v2H5v-2zm4-4h2v2H9V9zm0 4h2v2H9v-2zm4-4h2v2h-2V9zm0 4h2v2h-2v-2z"></path></svg>
+       Calendar
+      <% end %>
+    </li>
+
+     <li data-tab="all-meetings">
+      <%= link_to "#all-meetings", class: "tab flex items-center" do %>
+        <svg viewBox="0 0 20 20" class="fill-current text-gray-400 mr-2" width="16" height="16"><title>folder</title><path d="M19.521,7.267c-0.144-0.204-0.38-0.328-0.631-0.328h-3.582l-0.272-1.826c-0.055-0.379-0.379-0.656-0.76-0.656
+              H9.802l-0.39-0.891c-0.123-0.279-0.399-0.46-0.704-0.46H1.11c-0.222,0-0.434,0.096-0.58,0.264C0.385,3.537,0.319,3.76,0.349,3.981
+              l1.673,12.243c0,0,0,0,0,0.002v0.004c0.015,0.113,0.06,0.213,0.119,0.303c0.006,0.009,0.006,0.023,0.012,0.033
+              c0.012,0.016,0.033,0.024,0.046,0.04c0.054,0.065,0.114,0.118,0.185,0.161c0.027,0.018,0.051,0.035,0.078,0.048
+              c0.099,0.045,0.206,0.078,0.32,0.078h0.002l0,0h13.03c0.323,0,0.611-0.201,0.722-0.505l3.076-8.416
+              C19.698,7.735,19.663,7.474,19.521,7.267z M8.203,4.644l0.391,0.889c0.123,0.279,0.399,0.461,0.704,0.461h4.315l0.141,0.944H5.859
+              c-0.323,0-0.611,0.201-0.723,0.505l-2.011,5.505L1.992,4.644H8.203z M15.276,15.356H3.882l2.515-6.879H17.79L15.276,15.356z"></path></svg>
+      All Bookings
+      <% end %>
+    </li>
+
+  </ul>
+</nav>
+
+<div class="bg-white p-10 border rounded">
+  <div id="all-meetings" class="tab-panel">
+
+     <h1 class="text-3xl font-bold">Bookings</h1>
+
+     <% meetings.each do |meeting| %>
+        <div class="flex flex-wrap items-center justify-start p-4 border-b border-gray-400 mb-6">
+          <div class="flex-1 flex justify-between">
+            <div>
+              <%= link_to meeting.name, meeting, class: "link mr-4" %>
+            </div>
+            <div>
+              <%= readable_time(meeting.start_time) %> &ndash;
+              <%= readable_time(meeting.end_time) %>
+            </div>
+          </div>
+        </div>
+
+        <%= link_to "Cancel Meeting", meeting, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-destroy ml-4" if admin? %>
+     <% end %>
+  </div>
+
+  <div id="calendar" class="tab-panel active">
+    <h1 class="text-3xl font-bold mb-3">Booking Calendar</h1>
+    <div id="meeting-calendar">
+      <%= render "calendar", meetings: meetings  %>
+    </div>
+  </div>
+
+</div>
+
+
